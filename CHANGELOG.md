@@ -74,3 +74,23 @@ Initial clean workspace version (no secrets in history)
 
 ## GitHub Repository
 https://github.com/Milo-2026/Milo-Workspace
+---
+
+## [1.0.3] - 2026-03-14
+
+### Added
+- Milo Control Log (CONTROL_LOG.md) - comprehensive reference document
+- Notion API payload for Control Log page creation
+- Sub-Agent Registry section template
+- Products managed overview
+
+### Changed
+- Updated version system to track in conversation
+
+### Notion Integration
+- Created control log payload ready for Notion import
+- Parent page ID needed to create page via API
+
+### Files Added
+- `CONTROL_LOG.md` - Master reference for identity, skills, SOPs, processes
+- `notion_control_log_payload.json` - API payload for Notion page creation
