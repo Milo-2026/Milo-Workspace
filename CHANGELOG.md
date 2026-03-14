@@ -111,3 +111,18 @@ https://github.com/Milo-2026/Milo-Workspace
 ### Files Changed
 - Removed: workspace/.env (moved to parent)
 - Added: lib/env_loader.ts (central env loader)
+
+---
+
+## [1.0.5] - 2026-03-14
+
+### Added
+- Notion Control Log page created: https://www.notion.so/Milo-Control-Log
+- Centralized reference for identity, skills, SOPs, processes
+
+### Changed
+- Notion API key refreshed and synced across all locations
+
+### Files
+- CONTROL_LOG.md (local markdown version)
+- notion_create_page.json (Notion API payload)
