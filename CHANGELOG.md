@@ -94,3 +94,20 @@ https://github.com/Milo-2026/Milo-Workspace
 ### Files Added
 - `CONTROL_LOG.md` - Master reference for identity, skills, SOPs, processes
 - `notion_control_log_payload.json` - API payload for Notion page creation
+
+---
+
+## [1.0.4] - 2026-03-14
+
+### Changed
+- Moved .env to /Users/alfredoalvarez/.openclaw/.env (parent folder) to prevent GitHub leaks
+- Created lib/env_loader.ts to read environment from parent directory
+- All secrets now outside the Git-synced workspace
+
+### Security
+- .env is gitignored and never committed
+- GitHub repo (Milo-2026/Milo-Workspace) contains no secrets
+
+### Files Changed
+- Removed: workspace/.env (moved to parent)
+- Added: lib/env_loader.ts (central env loader)
