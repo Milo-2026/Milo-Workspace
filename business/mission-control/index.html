@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoCodeLab - Mission Control</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d1117; 
+            color: #e6edf3;
+            padding: 20px;
+        }
+        h1 { margin-bottom: 20px; font-size: 24px; }
+        h2 { margin: 30px 0 15px; font-size: 18px; color: #8b949e; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .card h3 { font-size: 16px; margin-bottom: 10px; }
+        .card .price { font-size: 24px; color: #3fb950; font-weight: bold; margin-bottom: 10px; }
+        .card .status { 
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            background: #22c55e;
+        }
+        .card .status.draft { background: #f59e0b; }
+        
+        .card p { color: #8b949e; font-size: 14px; margin-top: 10px; }
+        .card a { color: #58a6ff; text-decoration: none; }
+        .card a:hover { text-decoration: underline; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #30363d; }
+        th { color: #8b949e; font-size: 12px; }
+        
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #238636;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .btn:hover { background: #2ea043; }
+    </style>
+</head>
+<body>
+    <h1>🎯 NoCodeLab - Mission Control</h1>
+    
+    <div class="grid">
+        <div class="card">
+            <h3>AI Agent Starter Pack</h3>
+            <div class="price">$27</div>
+            <span class="status draft">DRAFT - Review Needed</span>
+            <p>Set up your first AI agent in 7 days. Includes prompts, templates, and step-by-step instructions.</p>
+            <a href="products/ai-agent-starter-pack.html" class="btn">📖 Read Product</a>
+        </div>
+        
+        <div class="card">
+            <h3>Database Blueprint</h3>
+            <div class="price">$37</div>
+            <span class="status draft">DRAFT - Review Needed</span>
+            <p>What data to track and how. Start with 5 core metrics and scale from there.</p>
+            <a href="products/database-blueprint.html" class="btn">📖 Read Product</a>
+        </div>
+        
+        <div class="card">
+            <h3>Automation Templates</h3>
+            <div class="price">$47</div>
+            <span class="status draft">DRAFT - Review Needed</span>
+            <p>50+ copy-paste workflows for lead gen, sales, support, and operations.</p>
+            <a href="products/automation-templates.html" class="btn">📖 Read Product</a>
+        </div>
+        
+        <div class="card">
+            <h3>Complete Bundle</h3>
+            <div class="price">$97</div>
+            <span class="status draft">DRAFT - Review Needed</span>
+            <p>All three products plus exclusive templates and future updates.</p>
+            <a href="#" class="btn" style="background:#6e7681;cursor:not-allowed;">📖 Coming Soon</a>
+        </div>
+    </div>
+    
+    <h2>📋 Review Checklist</h2>
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td>AI Agent Starter Pack</td>
+            <td>📖 Ready for Review</td>
+            <td><a href="products/ai-agent-starter-pack.html" class="btn">Read</a></td>
+        </tr>
+        <tr>
+            <td>Database Blueprint</td>
+            <td>📖 Ready for Review</td>
+            <td><a href="products/database-blueprint.html" class="btn">Read</a></td>
+        </tr>
+        <tr>
+            <td>Automation Templates</td>
+            <td>📖 Ready for Review</td>
+            <td><a href="products/automation-templates.html" class="btn">Read</a></td>
+        </tr>
+    </table>
+    
+    <h2>🔗 Links</h2>
+    <table>
+        <tr>
+            <th>Service</th>
+            <th>URL</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>Website</td>
+            <td>nocodelab.tech</td>
+            <td>⏳ Domain needs setup</td>
+        </tr>
+        <tr>
+            <td>Vercel (temp)</td>
+            <td>landing-wheat-nine-72.vercel.app</td>
+            <td>✅ Live</td>
+        </tr>
+        <tr>
+            <td>Stripe</td>
+            <td>-</td>
+            <td>⏳ Testing</td>
+        </tr>
+        <tr>
+            <td>Resend (email)</td>
+            <td>-</td>
+            <td>⏳ Testing</td>
+        </tr>
+        <tr>
+            <td>Supabase</td>
+            <td>-</td>
+            <td>✅ Tables ready</td>
+        </tr>
+    </table>
+    
+    <h2>📧 Email Sequence</h2>
+    <table>
+        <tr>
+            <th>Day</th>
+            <th>Subject</th>
+            <th>Status</th>
+        </tr>
+        <tr><td>Day 1</td><td>Welcome to AI Automation Week</td><td>✅ Ready</td></tr>
+        <tr><td>Day 2</td><td>53% of businesses fail at this</td><td>✅ Ready</td></tr>
+        <tr><td>Day 3</td><td>The 5 numbers every business needs</td><td>✅ Ready</td></tr>
+        <tr><td>Day 4</td><td>Your first AI employee</td><td>✅ Ready</td></tr>
+        <tr><td>Day 5</td><td>50 tasks you can automate today</td><td>✅ Ready</td></tr>
+        <tr><td>Day 6</td><td>Your 7-day action plan</td><td>✅ Ready</td></tr>
+        <tr><td>Day 7</td><td>Special offer inside</td><td>✅ Ready</td></tr>
+    </table>
+</body>
+</html>

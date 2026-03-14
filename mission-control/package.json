@@ -1,0 +1,19 @@
+{
+  "name": "mission-control",
+  "version": "1.0.0",
+  "description": "Mission Control - Agent & Project Management",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": ["kanban", "project-management", "agents"],
+  "author": "Side Quest Studios",
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.1.4",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "vite": "^7.3.1"
+  }
+}

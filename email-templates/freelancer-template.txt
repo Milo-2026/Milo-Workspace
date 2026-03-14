@@ -1,0 +1,29 @@
+SUBJECT: Small tool that helps you stand out from other roofers
+
+Hey {{first_name}},
+
+Quick question - how do you set yourself apart from the other 50 roofers in your area?
+
+As a solo contractor, I know you probably compete on price because it's the easiest thing. But that kills your margins.
+
+Here's what I've seen work for other independent roofers:
+- Professional documentation (shows you run a real business)
+- Quick estimates with clear scope
+- Change orders that are actually signed
+
+AddOnQuote gives you all of that without the complexity of enterprise software.
+
+It's $29/month, or you can grab a lifetime deal for $299 and never pay again.
+
+Worth checking out? The 14-day free trial has everything unlocked.
+
+Cheers,
+Milo
+Side Quest Studios
+
+---
+{{company_name}}
+{{first_name}} {{last_name}}
+{{email}}
+{{phone}}
+{{website}}

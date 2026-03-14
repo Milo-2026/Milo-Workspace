@@ -1,0 +1,79 @@
+VISUAL FOUNDATION
+Brand: generic
+Style: Clean, minimalist with bold typography
+Layout: asymmetrical grid with generous whitespace
+Mood: professional, clear
+
+COLOR PALETTE
+Primary: #3B82F6
+Secondary: #1F2937
+Accent: #F3F4F6
+Background: clean white or light gray
+Accent Elements: blue accents
+
+TYPOGRAPHY
+Primary Font: Inter, sans-serif
+Secondary Font: Roboto, sans-serif
+Text Sizes:
+  - Main Title (H1): 48-64px
+  - Section Headers (H2): 32-40px
+  - Body Text: 16-18px
+  - Captions/Notes: 12-14px
+
+ICONOGRAPHY & GRAPHICS
+Style: modern, clean, professional
+Iconography: versatile business icons
+Graphics: flat icons, subtle shadows, gradient accents
+
+CONTENT TO DISPLAY
+
+SECTION 1: MAIN TITLE
+  - --example
+  ICON: Brand logo
+
+SECTION 2: KEY POINT 1
+  - First important benefit
+  STATISTIC: 35% improvement
+  ICON: Chart icon
+
+SECTION 3: KEY POINT 2
+  - Second important benefit
+  STATISTIC: 2x faster
+  ICON: Speed icon
+
+SECTION 4: KEY POINT 3
+  - Third important benefit
+  STATISTIC: $800 saved
+  ICON: Dollar icon
+
+SECTION 5: CTA
+  - Get started today
+  STATISTIC: 14 days free
+  ICON: Arrow icon
+
+FORMAT SPECIFICATIONS
+Platform: instagram
+Dimensions: 1080x1080px
+Orientation: Square or Landscape
+Aspect Ratio: 1:1
+
+TECHNICAL REQUIREMENTS
+- High resolution (minimum 1080px width)
+- Print-ready quality (300 DPI for PDF export)
+- Web-optimized (compressed for fast loading)
+- Accessible text (high contrast, readable fonts)
+- Scalable vectors for icons and graphics
+
+NEGATIVE PROMPT
+- Cluttered layout
+- Too much text
+- Mismatched fonts
+- Low contrast areas
+- Stock photography that looks generic
+- Unprofessional or childish elements
+- Watermarks or branding from other companies
+
+FINAL INSTRUCTIONS
+Create a cohesive generic branded infographic that clearly communicates
+each section while maintaining visual hierarchy. Use Clean, minimalist with bold typography
+aesthetic. Ensure all text is legible and key points are visually emphasized.

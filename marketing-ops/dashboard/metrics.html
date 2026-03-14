@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control - Content Metrics</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d1117; 
+            color: #e6edf3;
+            padding: 20px;
+        }
+        h1 { margin-bottom: 20px; font-size: 24px; }
+        
+        .filters {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #30363d;
+            background: #21262d;
+            color: #8b949e;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .filter-btn.active {
+            background: #238636;
+            color: white;
+            border-color: #238636;
+        }
+        
+        .filter-btn:hover { background: #30363d; }
+        
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .stat-card h3 {
+            color: #8b949e;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .stat-card .value {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        
+        .stat-card.trending .value { color: #3fb950; }
+        .stat-card.tracking .value { color: #d29922; }
+        .stat-card.stopped .value { color: #6e7681; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #161b22;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #30363d;
+        }
+        
+        th {
+            background: #21262d;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #8b949e;
+        }
+        
+        td { font-size: 14px; }
+        
+        .post-text {
+            max-width: 300px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status.extended, .status.trending {
+            background: #238636;
+            color: white;
+        }
+        
+        .status.tracking {
+            background: #d29922;
+            color: black;
+        }
+        
+        .status.stopped, .status.completed {
+            background: #30363d;
+            color: #8b949e;
+        }
+        
+        .metrics {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .metric {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: #8b949e;
+        }
+        
+        .metric .num { color: #e6edf3; }
+        
+        .refresh-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            background: #238636;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .refresh-btn:hover { background: #2ea043; }
+        
+        .account-badge {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .account-badge.addonquote { background: #1f6feb; color: white; }
+        .account-badge.sidequest { background: #a371f7; color: white; }
+        .account-badge.sheetitnow { background: #3fb950; color: black; }
+        
+        .angle-tag {
+            font-size: 10px;
+            padding: 2px 6px;
+            background: #30363d;
+            border-radius: 4px;
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎯 Mission Control - Content Metrics</h1>
+    
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all">All Posts</button>
+        <button class="filter-btn" data-filter="trending">🟢 Trending</button>
+        <button class="filter-btn" data-filter="tracking">🟡 Tracking</button>
+        <button class="filter-btn" data-filter="stopped">⚫ Stopped</button>
+    </div>
+    
+    <div class="stats-row">
+        <div class="stat-card">
+            <h3>Total Posts</h3>
+            <div class="value" id="totalPosts">0</div>
+        </div>
+        <div class="stat-card trending">
+            <h3>🟢 Trending</h3>
+            <div class="value" id="trendingCount">0</div>
+        </div>
+        <div class="stat-card tracking">
+            <h3>🟡 Tracking</h3>
+            <div class="value" id="trackingCount">0</div>
+        </div>
+        <div class="stat-card stopped">
+            <h3>⚫ Stopped</h3>
+            <div class="value" id="stoppedCount">0</div>
+        </div>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Post</th>
+                <th>Account</th>
+                <th>Angle</th>
+                <th>Metrics</th>
+                <th>Status</th>
+                <th>Posted</th>
+            </tr>
+        </thead>
+        <tbody id="postsTable">
+            <tr><td colspan="6" style="text-align:center;padding:40px;">Loading...</td></tr>
+        </tbody>
+    </table>
+    
+    <button class="refresh-btn" onclick="loadMetrics()">🔄 Refresh</button>
+    
+    <script>
+        let allPosts = [];
+        
+        function categorizeAngle(text) {
+            const t = text.toLowerCase();
+            if (t.includes('?') && t.length < 100) return 'question';
+            if (t.includes('%') || t.includes('$') || /\d+/.test(t)) return 'statistic';
+            if (t.includes('addonquote') || t.includes('sheetitnow') || t.includes('→')) return 'cross-promo';
+            if (t.includes('stop') || t.includes('lose') || t.includes('cost') || t.includes('miss') || t.includes('forget') || t.includes('problem')) return 'pain-point';
+            if (t.includes('how') || t.includes('step') || t.includes('tip') || t.includes('guide')) return 'how-to';
+            return 'benefit';
+        }
+        
+        function loadMetrics() {
+            fetch('/metrics/data/content_metrics.json')
+                .then(r => r.json())
+                .then(data => {
+                    allPosts = data.posts || [];
+                    renderPosts('all');
+                    updateStats();
+                })
+                .catch(e => {
+                    document.getElementById('postsTable').innerHTML = 
+                        '<tr><td colspan="6" style="text-align:center;padding:40px;">Error loading data</td></tr>';
+                });
+        }
+        
+        function updateStats() {
+            const trending = allPosts.filter(p => p.status === 'extended').length;
+            const tracking = allPosts.filter(p => p.status === 'tracking' || !p.status).length;
+            const stopped = allPosts.filter(p => p.status === 'stopped' || p.status === 'completed').length;
+            
+            document.getElementById('totalPosts').textContent = allPosts.length;
+            document.getElementById('trendingCount').textContent = trending;
+            document.getElementById('trackingCount').textContent = tracking;
+            document.getElementById('stoppedCount').textContent = stopped;
+        }
+        
+        function renderPosts(filter) {
+            const filtered = filter === 'all' ? allPosts : 
+                allPosts.filter(p => p.status === filter || (filter === 'trending' && p.status === 'extended'));
+            
+            const tbody = document.getElementById('postsTable');
+            
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;">No posts found</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = filtered.map(post => {
+                const angle = categorizeAngle(post.text);
+                const status = post.status || 'tracking';
+                const date = new Date(post.posted_at).toLocaleDateString();
+                
+                return `
+                    <tr>
+                        <td class="post-text" title="${post.text}">${post.text}</td>
+                        <td><span class="account-badge ${post.account}">${post.account}</span></td>
+                        <td><span class="angle-tag">${angle}</span></td>
+                        <td class="metrics">
+                            <span class="metric">❤️ <span class="num">${post.likes || 0}</span></span>
+                            <span class="metric">🔁 <span class="num">${post.retweets || 0}</span></span>
+                            <span class="metric">💬 <span class="num">${post.replies || 0}</span></span>
+                        </td>
+                        <td><span class="status ${status}">${status}</span></td>
+                        <td>${date}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderPosts(btn.dataset.filter);
+            });
+        });
+        
+        loadMetrics();
+        setInterval(loadMetrics, 60000);
+    </script>
+</body>
+</html>

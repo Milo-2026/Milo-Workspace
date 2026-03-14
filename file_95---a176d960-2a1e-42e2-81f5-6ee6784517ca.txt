@@ -1,0 +1,15 @@
+Hey, I need you to build me a mission control app where we can keep control everything.
+It will be a project management app in next GAS and I need you to build a similar
+to notion where we have a way to create tasks follow up on those tasks and also in
+that same app.
+I want to be able to see every single agent we have, so I need to see an agent for
+content creation and agent for content strategy, the agent that posts content, the agent,
+the coach, every single agent that we will be using throughout everything that we're doing.
+I need them to be there and have their own sections so we can control everything and we
+can see in a campaign board for everyone what tasks are not started, what tasks are
+in progress, what tasks have been completed and which ones are archived with dates when
+where they created, when they were moved to the next tier and when they were completed and
+are archived, so at everything that we may need to do project management accurately
+across all of our projects and let's discuss how to make it into an app that I can actually
+access not only locally as a local host but through the internet on my phone or through
+any other computer I have.

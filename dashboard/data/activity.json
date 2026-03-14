@@ -1,0 +1,262 @@
+[
+  {
+    "id": "proj1-mrr",
+    "actor": "user",
+    "action": "project_created",
+    "details": {
+      "projectId": "mrr1-main",
+      "title": "MRR Growth: Reach $1,000 MRR",
+      "category": "revenue"
+    },
+    "timestamp": "2026-02-10T00:00:00.000Z"
+  },
+  {
+    "id": "proj2-ads",
+    "actor": "user",
+    "action": "project_created",
+    "details": {
+      "projectId": "ads1-meta",
+      "title": "Meta Ads Miami Test ($100/month)",
+      "category": "marketing"
+    },
+    "timestamp": "2026-02-10T00:00:00.000Z"
+  },
+  {
+    "id": "proj3-content",
+    "actor": "bot",
+    "action": "project_created",
+    "details": {
+      "projectId": "ads2-content",
+      "title": "Content: 20 posts/day per X account",
+      "subAgent": "publishing_agent (PID 5295)"
+    },
+    "timestamp": "2026-02-10T00:00:00.000Z"
+  },
+  {
+    "id": "proj4-blogs",
+    "actor": "user",
+    "action": "project_created",
+    "details": {
+      "projectId": "blog1-addonquote",
+      "title": "AddOnQuote Blog: 1 post/week"
+    },
+    "timestamp": "2026-02-10T00:00:00.000Z"
+  },
+  {
+    "id": "proj5-blogs",
+    "actor": "user",
+    "action": "project_created",
+    "details": {
+      "projectId": "blog2-sidequest",
+      "title": "Side Quest Blog: 1 post/week"
+    },
+    "timestamp": "2026-02-10T00:00:00.000Z"
+  },
+  {
+    "id": "proj6-blogs",
+    "actor": "user",
+    "action": "project_created",
+    "details": {
+      "projectId": "blog3-sheetitnow",
+      "title": "Sheet It Now Blog: 1 post/week"
+    },
+    "timestamp": "2026-02-10T00:00:00.000Z"
+  },
+  {
+    "id": "proj7-trend",
+    "actor": "user",
+    "action": "project_created",
+    "details": {
+      "projectId": "trend1-daily",
+      "title": "Daily Trend Research (Brave API)",
+      "subAgent": "grok-researcher"
+    },
+    "timestamp": "2026-02-15T00:00:00.000Z"
+  },
+  {
+    "id": "proj8-email",
+    "actor": "user",
+    "action": "project_created",
+    "details": {
+      "projectId": "email1-cold",
+      "title": "Cold Email Outreach System",
+      "smtp": "mail.sidequeststudios.io:587"
+    },
+    "timestamp": "2026-02-15T00:00:00.000Z"
+  },
+  {
+    "id": "proj9-email",
+    "actor": "user",
+    "action": "project_created",
+    "details": {
+      "projectId": "email2-templates",
+      "title": "Email Templates: AddOnQuote ($800 angle)"
+    },
+    "timestamp": "2026-02-15T00:00:00.000Z"
+  },
+  {
+    "id": "proj10-leads",
+    "actor": "user",
+    "action": "project_created",
+    "details": {
+      "projectId": "lead1-apollo",
+      "title": "Apollo.io Lead List (Roofing Contractors)"
+    },
+    "timestamp": "2026-02-15T00:00:00.000Z"
+  },
+  {
+    "id": "proj11-leads",
+    "actor": "user",
+    "action": "project_created",
+    "details": {
+      "projectId": "lead2-maps",
+      "title": "Google Maps Lead Scraper (Free)"
+    },
+    "timestamp": "2026-02-15T00:00:00.000Z"
+  },
+  {
+    "id": "skill1-grok",
+    "actor": "bot",
+    "action": "skill_installed",
+    "details": {
+      "skillId": "grok-researcher",
+      "location": "/opt/homebrew/lib/node_modules/openclaw/skills/grok-researcher/"
+    },
+    "timestamp": "2026-02-17T22:00:00.000Z"
+  },
+  {
+    "id": "skill2-meta",
+    "actor": "bot",
+    "action": "skill_installed",
+    "details": {
+      "skillId": "meta-ads-marketing",
+      "location": "/opt/homebrew/lib/node_modules/openclaw/skills/meta-ads-marketing/"
+    },
+    "timestamp": "2026-02-14T00:00:00.000Z"
+  },
+  {
+    "id": "google1-sa",
+    "actor": "user",
+    "action": "google_configured",
+    "details": {
+      "serviceAccount": "milo-ai@milo-486315.iam.gserviceaccount.com",
+      "apis": [
+        "Gmail",
+        "Drive",
+        "Sheets",
+        "Calendar"
+      ]
+    },
+    "timestamp": "2026-02-17T21:00:00.000Z"
+  },
+  {
+    "id": "smtp1-tested",
+    "actor": "bot",
+    "action": "smtp_verified",
+    "details": {
+      "host": "mail.sidequeststudios.io",
+      "port": 587,
+      "email": "milo@sidequeststudios.io"
+    },
+    "timestamp": "2026-02-17T20:00:00.000Z"
+  },
+  {
+    "id": "dash1-install",
+    "actor": "user",
+    "action": "dashboard_installed",
+    "details": {
+      "url": "http://localhost:3333",
+      "source": "https://github.com/madrzak/vidclaw.git"
+    },
+    "timestamp": "2026-02-17T22:15:00.000Z"
+  },
+  {
+    "id": "publish1-running",
+    "actor": "bot",
+    "action": "agent_status",
+    "details": {
+      "agent": "publishing_agent",
+      "pid": 5295,
+      "status": "running",
+      "postsPerDay": 60,
+      "accounts": [
+        "addonquote",
+        "sidequest",
+        "sheetitnow"
+      ]
+    },
+    "timestamp": "2026-02-17T10:02:00.000Z"
+  },
+  {
+    "id": "content1-fresh",
+    "actor": "bot",
+    "action": "content_refreshed",
+    "details": {
+      "action": "anti-duplicate cleanup",
+      "postsAdded": 117,
+      "cooldown": "7 days"
+    },
+    "timestamp": "2026-02-17T00:00:00.000Z"
+  },
+  {
+    "id": "mlrgv0mm195y",
+    "actor": "dashboard",
+    "action": "openclaw_updated",
+    "details": {
+      "version": "2026.2.17"
+    },
+    "timestamp": "2026-02-18T03:22:26.926Z"
+  },
+  {
+    "id": "mlsuhmbacxva",
+    "actor": "user",
+    "action": "task_created",
+    "details": {
+      "taskId": "mlsuhmb7l57k",
+      "title": "Create a Section where we can see all the agents we use in our Studio."
+    },
+    "timestamp": "2026-02-19T02:31:42.646Z"
+  },
+  {
+    "id": "mlsuhzj54qk9",
+    "actor": "user",
+    "action": "task_created",
+    "details": {
+      "taskId": "mlsuhzj3hq0m",
+      "title": "Create Agents Section"
+    },
+    "timestamp": "2026-02-19T02:31:59.777Z"
+  },
+  {
+    "id": "mlsupgtu8t3r",
+    "actor": "user",
+    "action": "task_updated",
+    "details": {
+      "taskId": "agents1-management",
+      "title": "Agents Team Management Section",
+      "changes": [
+        "title",
+        "description",
+        "skill",
+        "skills",
+        "status",
+        "schedule"
+      ]
+    },
+    "timestamp": "2026-02-19T02:37:48.786Z"
+  },
+  {
+    "id": "mlsv7xfbk8d1",
+    "actor": "user",
+    "action": "task_updated",
+    "details": {
+      "taskId": "agents1-management",
+      "title": "Agents Team Management Section",
+      "changes": [
+        "status",
+        "order"
+      ]
+    },
+    "timestamp": "2026-02-19T02:52:10.103Z"
+  }
+]

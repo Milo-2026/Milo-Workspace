@@ -1,0 +1,33 @@
+SUBJECT: How {{company_name}} handles change orders with {{employee_count}} people
+
+Hi {{first_name}},
+
+I noticed {{company_name}} is up to {{employee_count}} employees - that's impressive growth.
+
+With a team that size, I imagine change orders can get messy. When I talk to roofing companies with 20+ employees, they usually have the same three problems:
+
+1. Foremen track changes on paper or spreadsheets (easy to lose)
+2. Office spends hours reconciling job costs
+3. Nobody knows the real profit until the job closes
+
+AddOnQuote was built to solve this specifically for growing roofing companies.
+
+Key features for teams your size:
+- Mobile app for foremen to document changes on-site
+- Real-time profit visibility per job
+- Export reports for accounting in one click
+
+We have a 14-day free trial, and a team license at $799 (2 seats).
+
+Curious if it would fit your workflow? Happy to show you around.
+
+Thanks,
+Milo
+Side Quest Studios
+
+---
+{{company_name}}
+{{first_name}} {{last_name}}
+{{email}}
+{{phone}}
+{{website}}

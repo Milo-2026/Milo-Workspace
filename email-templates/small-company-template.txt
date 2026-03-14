@@ -1,0 +1,31 @@
+SUBJECT: Quick question about your change orders (and $800/job)
+
+Hey {{first_name}},
+
+I came across {{company_name}} while researching Miami roofing companies, and I had to reach out.
+
+Here's the thing - most roofing contractors I talk to are leaving about $800 per job on the table. Not because of pricing, but because of undocumented change orders.
+
+The math is simple:
+- Average job: $8,000
+- Missed change orders: 10%
+- That's $800/job you're not capturing
+
+I've built AddOnQuote specifically for contractors like you who want to protect their profits without adding paperwork overhead.
+
+It's free for 14 days, and there's a lifetime deal at $299 (one seat) if you want to lock in the price.
+
+Want to see how it works? Happy to jump on a quick 5-min call.
+
+Either way, keep up the good work with {{company_name}} - the 5-star reviews show you're doing something right.
+
+Best,
+Milo
+Side Quest Studios
+
+---
+{{company_name}}
+{{first_name}} {{last_name}}
+{{email}}
+{{phone}}
+{{website}}

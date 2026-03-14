@@ -1,0 +1,66 @@
+#!/bin/bash
+# Multi-Agent Telegram Chat Setup Guide
+# 
+# This script helps you set up 3 separate Telegram chats for:
+# 1. Milo (main orchestrator)
+# 2. Sheet It Now Agent
+# 3. AddOnQuote Agent
+#
+# USAGE:
+#   ./setup-telegram-chats.sh
+#
+
+echo "============================================="
+echo "  MULTI-AGENT TELEGRAM CHAT SETUP"
+echo "============================================="
+echo ""
+echo "You currently have ONE Telegram bot configured:"
+echo "  Bot Token: 8429603203:AAHE-1z9iBDpH61fLhIed2_tUVL22Tax3G4"
+echo ""
+echo "To create 3 separate agent chats:"
+echo ""
+echo "1. OPEN TELEGRAM and search for @MiloSideQuestBot"
+echo ""
+echo "2. CREATE 3 SEPARATE CHATS:"
+echo ""
+echo "   Chat 1: 'Milo - Orchestrator'"
+echo "      - This is your personal chat with me"
+echo "      - Use for general commands and oversight"
+echo ""
+echo "   Chat 2: 'Sheet It Now Agent'"
+echo "      - Start a NEW chat with the bot"
+echo "      - Say: 'You are the Sheet It Now autonomous agent'"
+echo "      - Bot will load: ~/.openclaw/workspace/agents/sheet-it-now.md"
+echo ""
+echo "   Chat 3: 'AddOnQuote Agent'"
+echo "      - Start another NEW chat with the bot"
+echo "      - Say: 'You are the AddOnQuote autonomous agent'"
+echo "      - Bot will load: ~/.openclaw/workspace/agents/addon-quote.md"
+echo ""
+echo "3. EACH CHAT ISOLATES CONTEXT"
+echo "   - Chat 1 knows everything about all projects"
+echo "   - Chat 2 only knows about Sheet It Now"
+echo "   - Chat 3 only knows about AddOnQuote"
+echo ""
+echo "4. TO SWITCH AGENTS:"
+echo "   - Just chat with the bot in a different conversation"
+echo "   - Each conversation maintains its own memory"
+echo ""
+echo "============================================="
+echo ""
+echo "Agent files created:"
+echo "  - /Users/alfredoalvarez/.openclaw/workspace/agents/sheet-it-now.md"
+echo "  - /Users/alfredoalvarez/.openclaw/workspace/agents/addon-quote.md"
+echo "  - /Users/alfredoalvarez/.openclaw/workspace/agents/sheet-it-now-report.py"
+echo "  - /Users/alfredoalvarez/.openclaw/workspace/agents/addon-quote-report.py"
+echo ""
+echo "Project knowledge created:"
+echo "  - /Users/alfredoalvarez/.openclaw/workspace/life/para/projects/sheet-it-now.md"
+echo "  - /Users/alfredoalvarez/.openclaw/workspace/life/para/projects/addon-quote.md"
+echo ""
+echo "Memory folders created:"
+echo "  - /Users/alfredoalvarez/.openclaw/workspace/memory/sheet-it-now/"
+echo "  - /Users/alfredoalvarez/.openclaw/workspace/memory/addon-quote/"
+echo ""
+echo "✅ Setup complete! Open Telegram to create the chats."
+echo ""

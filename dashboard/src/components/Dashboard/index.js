@@ -1,0 +1,6 @@
+export { default as MRRDashboard } from './MRRDashboard'
+export { default as CRMDashboard } from './CRMDashboard'
+export { default as XAnalytics } from './XAnalytics'
+export { default as ContentKanban } from './ContentKanban'
+export { default as AgentsManager } from './AgentsManager'
+export { default as ContentRepository } from '../Content/ContentRepository'

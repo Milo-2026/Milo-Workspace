@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" }
+  ],
+  "redirects": [
+    { "source": "/control", "destination": "/control/", "permanent": false },
+    { "source": "/admin", "destination": "/admin.html", "permanent": false }
+  ]
+}

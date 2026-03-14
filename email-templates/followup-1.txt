@@ -1,0 +1,14 @@
+SUBJECT: Re: Quick question about your change orders
+
+Hey {{first_name}},
+
+Following up on my last email - no pressure at all.
+
+I know you're busy running {{company_name}}, but if profit documentation is something you've thought about, I'd love to show you how AddOnQuote works.
+
+The $800/job figure comes from our research with contractors who were in your exact position. Most were surprised how much they were missing.
+
+Either way, good luck with the busy season.
+
+Best,
+Milo

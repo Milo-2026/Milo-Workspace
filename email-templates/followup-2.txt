@@ -1,0 +1,15 @@
+SUBJECT: One more thought on protecting your margins
+
+{{first_name}},
+
+This will be my last email on this topic, I promise.
+
+I built AddOnQuote because I saw contractors getting burned. Not by customers, but by their own paperwork.
+
+The lifetime deal is $299 - that's less than 1 job's worth of documented change orders.
+
+If you're interested: https://addonquote.com/signup
+
+If not, no worries. Best of luck with {{company_name}}.
+
+Milo

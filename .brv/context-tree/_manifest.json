@@ -1,0 +1,103 @@
+{
+  "active_context": [
+    {
+      "order": 3,
+      "path": "_index.md",
+      "tokens": 495,
+      "type": "summary"
+    },
+    {
+      "order": 2,
+      "path": "architecture/_index.md",
+      "tokens": 226,
+      "type": "summary"
+    },
+    {
+      "order": 2,
+      "path": "automation/_index.md",
+      "tokens": 584,
+      "type": "summary"
+    },
+    {
+      "order": 2,
+      "path": "integrations/_index.md",
+      "tokens": 147,
+      "type": "summary"
+    },
+    {
+      "order": 2,
+      "path": "marketing/_index.md",
+      "tokens": 187,
+      "type": "summary"
+    },
+    {
+      "order": 1,
+      "path": "architecture/daemon_patterns/_index.md",
+      "tokens": 274,
+      "type": "summary"
+    },
+    {
+      "importance": 53,
+      "path": "automation/x_orchestrator/x_orchestrator_maintenance.md",
+      "tokens": 354,
+      "type": "context"
+    },
+    {
+      "importance": 50,
+      "path": "architecture/daemon_patterns/morning_report_daemon.md",
+      "tokens": 276,
+      "type": "context"
+    },
+    {
+      "importance": 50,
+      "path": "automation/social_media_analytics/social_media_analytics_pattern.md",
+      "tokens": 277,
+      "type": "context"
+    },
+    {
+      "importance": 50,
+      "path": "automation/task_tracking/agency_operations_status.md",
+      "tokens": 220,
+      "type": "context"
+    },
+    {
+      "importance": 50,
+      "path": "automation/x_analytics/x_analytics_integration.md",
+      "tokens": 217,
+      "type": "context"
+    },
+    {
+      "importance": 50,
+      "path": "automation/x_orchestrator/x_orchestrator_incident_report.md",
+      "tokens": 230,
+      "type": "context"
+    },
+    {
+      "importance": 50,
+      "path": "automation/x_orchestrator/x_orchestrator_operations.md",
+      "tokens": 345,
+      "type": "context"
+    },
+    {
+      "importance": 50,
+      "path": "integrations/claude_cli/claude_cli_setup.md",
+      "tokens": 228,
+      "type": "context"
+    },
+    {
+      "importance": 50,
+      "path": "marketing/content_strategy/addonquote_blog_content_strategy.md",
+      "tokens": 222,
+      "type": "context"
+    }
+  ],
+  "generated_at": "2026-03-13T13:02:12.956Z",
+  "lane_tokens": {
+    "contexts": 2369,
+    "stubs": 0,
+    "summaries": 1913
+  },
+  "source_fingerprint": "c9ac4711fc5dccce1c17549ba8d1659d606b19934159d84acaa6bec87717f9dd",
+  "total_tokens": 4282,
+  "version": 1
+}

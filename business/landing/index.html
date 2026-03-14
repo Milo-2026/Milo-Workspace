@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoCodeLab - Structured AI Guidance for Business Owners</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg: #F5F4EF;
+            --bg-secondary: #FFFFFF;
+            --accent: #C26D53;
+            --accent-hover: #A85B43;
+            --emerald: #66806A;
+            --text-primary: #2B2927;
+            --text-secondary: #6A6662;
+            --text-muted: #8E8A86;
+            --border: #E0DCD1;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 { font-family: 'Sora', sans-serif; }
+        
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--bg);
+            background: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--text-primary);
+            background: transparent;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover {
+            background: rgba(0,0,0,0.05);
+            border-color: rgba(0,0,0,0.2);
+        }
+        
+        .section { position: relative; z-index: 10; padding: 96px 24px; min-height: 70vh; display: flex; flex-direction: column; justify-content: center; }
+        .container { max-width: 1200px; margin: 0 auto; width: 100%; }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            background: rgba(245, 244, 239, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .logo { font-family: 'Sora', sans-serif; font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+        
+        .nav-tag { display: none; }
+        @media (min-width: 1024px) {
+            .nav-tag { display: block; font-size: 12px; color: var(--text-muted); border-left: 1px solid rgba(0,0,0,0.1); padding-left: 16px; }
+        }
+        
+        .nav-links { display: none; gap: 32px; font-size: 14px; font-weight: 500; color: var(--text-secondary); }
+        @media (min-width: 768px) { .nav-links { display: flex; } }
+        
+        .nav-links a:hover { color: var(--accent); transition: color 0.3s; }
+        
+        .nav-cta { padding: 10px 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.05em; color: var(--bg); background: var(--text-primary); border-radius: 4px; }
+        .nav-cta:hover { background: var(--accent); }
+        
+        .hero { text-align: center; min-height: 100vh; padding-top: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .hero h1 { font-size: clamp(36px, 6vw, 72px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 24px; }
+        .hero-accent { color: var(--accent); }
+        .hero-subtitle { max-width: 600px; margin: 0 auto 48px; font-size: clamp(16px, 2vw, 20px); color: var(--text-muted); }
+        .hero-subtitle strong { color: var(--text-primary); font-weight: 500; }
+        
+        .hero-buttons { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
+        @media (min-width: 640px) { .hero-buttons { flex-direction: row; } }
+        
+        .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 800px; margin: 0 auto; text-align: center; font-size: 14px; color: var(--text-muted); border-top: 1px solid rgba(0,0,0,0.05); padding-top: 40px; }
+        
+        .problem-section { background: rgba(255,255,255,0.6); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        
+        .two-col { display: grid; gap: 64px; }
+        @media (min-width: 768px) { .two-col { grid-template-columns: 1fr 1fr; } }
+        
+        .section-title { font-size: clamp(28px, 4vw, 48px); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 24px; }
+        .accent-bar { width: 48px; height: 4px; background: var(--accent); border-radius: 2px; margin-bottom: 32px; }
+        
+        .bullet-list { list-style: none; margin-bottom: 32px; }
+        .bullet-list li { display: flex; align-items: flex-start; margin-bottom: 16px; font-size: 18px; color: var(--text-secondary); }
+        .bullet-list li::before { content: '✓'; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; margin-right: 16px; margin-top: 4px; color: var(--emerald); font-weight: bold; }
+        
+        .playbooks-grid { display: grid; gap: 24px; margin: 0 auto 64px; max-width: 1100px; }
+        @media (min-width: 640px) { .playbooks-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .playbooks-grid { grid-template-columns: repeat(3, 1fr); } }
+        
+        .playbook-card { padding: 24px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; transition: all 0.3s; }
+        .playbook-card:hover { border-color: rgba(194, 109, 83, 0.3); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .playbook-icon { color: var(--emerald); margin-bottom: 12px; }
+        
+        .playbook-inner { max-width: 900px; margin: 0 auto; padding: 48px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; }
+        .playbook-inner h3 { font-size: 20px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .playbook-inner .bullet-list { display: grid; gap: 16px; }
+        @media (min-width: 768px) { .playbook-inner .bullet-list { grid-template-columns: 1fr 1fr; } }
+        
+        .playbook-tags { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.05); font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 500; color: var(--accent); }
+        
+        .how-it-works { background: rgba(255,255,255,0.6); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        
+        .card-box { position: relative; padding: 32px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+        .card-box::before { content: ''; position: absolute; inset: -20px; background: var(--bg); filter: blur(40px); border-radius: 50%; opacity: 0.5; z-index: -1; }
+        
+        .reward-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 32px 0 64px; }
+        .reward-pill { padding: 10px 20px; border: 1px solid var(--border); border-radius: 50px; background: var(--bg); color: var(--text-secondary); font-size: 14px; transition: all 0.3s; }
+        .reward-pill:hover { color: var(--accent); border-color: rgba(194, 109, 83, 0.4); }
+        
+        .reward-quote { font-family: 'Sora', sans-serif; font-size: clamp(24px, 5vw, 48px); font-weight: 600; text-align: center; }
+        .reward-quote .gray { color: var(--text-muted); }
+        .reward-quote .dark { color: var(--text-primary); }
+        .reward-quote .accent { color: var(--accent); font-size: clamp(20px, 3vw, 28px); margin-top: 32px; padding-top: 16px; }
+        
+        .future-section { background: rgba(255,255,255,0.6); border-top: 1px solid var(--border); }
+        
+        .future-grid { display: grid; gap: 48px; max-width: 1200px; margin: 0 auto; }
+        @media (min-width: 768px) { .future-grid { grid-template-columns: 1fr 1fr; } }
+        
+        .future-card { padding: 48px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; }
+        .future-card-light { background: var(--bg-secondary); box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+        
+        .cta-section { background: linear-gradient(to bottom, transparent, #EAE6DD); text-align: center; min-height: 60vh; border-top: 1px solid var(--border); }
+        
+        .footer { border-top: 1px solid var(--border); padding: 48px 24px; text-align: center; color: var(--text-muted); font-size: 14px; background: var(--bg); }
+        .footer-tagline { max-width: 400px; margin: 0 auto 32px; font-family: 'Sora', sans-serif; font-size: 18px; color: var(--text-secondary); }
+        .footer-tagline strong { color: var(--text-primary); display: block; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <canvas id="canvas-bg"></canvas>
+    
+    <nav>
+        <div class="logo">
+            NoCodeLab
+            <span class="logo-dot"></span>
+            <span class="nav-tag">Structured AI Guidance for Business Owners</span>
+        </div>
+        <div class="nav-links">
+            <a href="#playbooks">Playbooks</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#who-its-for">Who It's For</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <a href="#playbooks" class="nav-cta">Browse Playbooks</a>
+    </nav>
+    
+    <main>
+        <!-- Hero -->
+        <section class="hero section">
+            <h1>Finally, A Clear Path to<br><span class="hero-accent">Using AI in Your Business.</span></h1>
+            <p class="hero-subtitle">
+                No hype. No technical jargon. No endless tool lists.<br>
+                <strong>Just structured, practical AI playbooks that show you exactly what to implement — and how to do it.</strong>
+            </p>
+            <div class="hero-buttons">
+                <a href="#playbooks" class="btn-primary">Browse the AI Playbooks</a>
+                <button class="btn-secondary">See What You Can Automate</button>
+            </div>
+            <div class="hero-stats">
+                <div>Designed for operators.</div>
+                <div>Focused on execution.</div>
+                <div>Built for real-world results.</div>
+            </div>
+        </section>
+        
+        <!-- The Problem -->
+        <section class="section problem-section">
+            <div class="container two-col">
+                <div>
+                    <h2 class="section-title">If You've Been Feeling Behind,<br>You're Not Alone.</h2>
+                    <div class="accent-bar"></div>
+                </div>
+                <div>
+                    <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 24px;">AI is everywhere. Every day there's:</p>
+                    <ul class="bullet-list">
+                        <li>A new tool</li>
+                        <li>A new update</li>
+                        <li>A new "must-learn" platform</li>
+                        <li>A new expert telling you you're already behind</li>
+                    </ul>
+                    <p style="font-size: 20px; font-weight: 500; margin-top: 32px; margin-bottom: 16px;">You don't need more information.<br>You need clarity.</p>
+                    <p style="font-size: 18px; color: var(--text-secondary);">You need someone to filter the noise and tell you:<br><span style="color: var(--accent); font-style: italic;">"What actually matters for your business."</span></p>
+                    <p style="font-weight: 500; margin-top: 16px;">That's what No Code Lab does.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- What We Sell -->
+        <section id="playbooks" class="section">
+            <h2 class="section-title" style="text-align: center;">Practical AI Playbooks<br>for Real Businesses</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; font-size: 18px; color: var(--text-secondary);">We create structured PDF guides that walk you step-by-step through:</p>
+            
+            <div class="playbooks-grid">
+                <div class="playbook-card">
+                    <div class="playbook-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h3 style="font-family: 'Sora'; font-weight: 600; font-size: 18px; margin-bottom: 8px;">Automating repetitive tasks</h3>
+                </div>
+                <div class="playbook-card">
+                    <div class="playbook-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h3 style="font-family: 'Sora'; font-weight: 600; font-size: 18px; margin-bottom: 8px;">Using AI for marketing</h3>
+                </div>
+                <div class="playbook-card">
+                    <div class="playbook-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h3 style="font-family: 'Sora'; font-weight: 600; font-size: 18px; margin-bottom: 8px;">Implementing AI in operations</h3>
+                </div>
+                <div class="playbook-card">
+                    <div class="playbook-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h3 style="font-family: 'Sora'; font-weight: 600; font-size: 18px; margin-bottom: 8px;">Improving customer communication</h3>
+                </div>
+                <div class="playbook-card">
+                    <div class="playbook-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h3 style="font-family: 'Sora'; font-weight: 600; font-size: 18px; margin-bottom: 8px;">Increasing efficiency without hiring more staff</h3>
+                </div>
+            </div>
+            
+            <div class="playbook-inner">
+                <h3>Inside Each Playbook:</h3>
+                <ul class="bullet-list">
+                    <li>Focuses on one specific business problem</li>
+                    <li>Explains why it matters</li>
+                    <li>Shows which tools to use</li>
+                    <li>Walks you through implementation</li>
+                    <li>Avoids unnecessary technical complexity</li>
+                </ul>
+                <div class="playbook-tags">
+                    <span>No overwhelm.</span>
+                    <span>No fluff.</span>
+                    <span>Just clear execution.</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- How It Works -->
+        <section id="how-it-works" class="section how-it-works">
+            <div class="container two-col">
+                <div class="card-box">
+                    <h3 style="font-family: 'Sora'; font-weight: 600; font-size: 20px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid rgba(0,0,0,0.05);">Our playbooks focus on:</h3>
+                    <ul style="list-style: none;">
+                        <li style="display: flex; align-items: center; margin-bottom: 24px; font-weight: 500; color: var(--text-secondary);">
+                            <span style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(102, 128, 106, 0.1); color: var(--emerald); margin-right: 16px; font-size: 12px; font-weight: bold;">✓</span>
+                            Practical steps
+                        </li>
+                        <li style="display: flex; align-items: center; margin-bottom: 24px; font-weight: 500; color: var(--text-secondary);">
+                            <span style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(102, 128, 106, 0.1); color: var(--emerald); margin-right: 16px; font-size: 12px; font-weight: bold;">✓</span>
+                            Clear outcomes
+                        </li>
+                        <li style="display: flex; align-items: center; margin-bottom: 24px; font-weight: 500; color: var(--text-secondary);">
+                            <span style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(102, 128, 106, 0.1); color: var(--emerald); margin-right: 16px; font-size: 12px; font-weight: bold;">✓</span>
+                            Measurable benefits
+                        </li>
+                        <li style="display: flex; align-items: center; font-weight: 500; color: var(--text-secondary);">
+                            <span style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(102, 128, 106, 0.1); color: var(--emerald); margin-right: 16px; font-size: 12px; font-weight: bold;">✓</span>
+                            Real-world application
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="section-title">You Don't Need to<br>Become an AI Expert.</h2>
+                    <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 16px;">You don't need to:</p>
+                    <ul class="bullet-list">
+                        <li>Learn to code</li>
+                        <li>Understand machine learning</li>
+                        <li>Master every tool</li>
+                        <li>Follow every trend</li>
+                    </ul>
+                    <p style="font-weight: 500; font-size: 18px; margin-top: 32px; margin-bottom: 16px;">You need structured guidance.</p>
+                    <p style="font-family: 'Sora'; font-size: 20px; color: var(--accent);">Our playbooks are written for business owners — not developers.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- The Reward -->
+        <section class="section">
+            <div style="text-align: center; max-width: 900px; margin: 0 auto;">
+                <h2 class="section-title">What Happens When You<br>Implement AI Correctly</h2>
+                <p style="font-size: 18px; margin-bottom: 32px;">You get:</p>
+                
+                <div class="reward-pills">
+                    <span class="reward-pill">More time back</span>
+                    <span class="reward-pill">Fewer manual processes</span>
+                    <span class="reward-pill">Faster decision-making</span>
+                    <span class="reward-pill">Lower operational friction</span>
+                    <span class="reward-pill">Stronger competitive positioning</span>
+                </div>
+                
+                <div class="reward-quote">
+                    <div class="gray">You stop feeling behind.</div>
+                    <div class="dark" style="margin-top: 16px;">You start feeling in control.</div>
+                    <div class="accent">And that changes how you lead your business.</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Future Vision & Trust -->
+        <section class="section future-section">
+            <div class="future-grid">
+                <div class="future-card">
+                    <h3 style="font-family: 'Sora'; font-size: clamp(24px, 3vw, 32px); font-weight: 600; margin-bottom: 24px;">Start With Clarity.<br>Scale With Systems.</h3>
+                    <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 16px;">Our playbooks are the foundation.</p>
+                    <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 24px;">As your business grows, we will also offer:</p>
+                    <ul class="bullet-list" style="margin-bottom: 32px;">
+                        <li>Purpose-built automation tools</li>
+                        <li>AI-powered internal systems</li>
+                        <li>Structured implementation frameworks</li>
+                    </ul>
+                    <p style="font-weight: 500; margin-bottom: 16px;">But first, we make sure you understand what to build — and why.</p>
+                    <p style="font-family: 'Sora'; font-size: 20px; color: var(--accent);">Because software without clarity is just more noise.</p>
+                </div>
+                
+                <div id="who-its-for" class="future-card future-card-light" style="display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="font-family: 'Sora'; font-size: clamp(24px, 3vw, 32px); font-weight: 600; margin-bottom: 24px;">Built for Business Owners,<br>Not Tech Bros.</h3>
+                    <div style="font-size: 18px; color: var(--text-secondary); line-height: 1.6;">
+                        <p style="margin-bottom: 16px;">No Code Lab exists for operators.</p>
+                        <p style="margin-bottom: 16px;">For founders.<br>For decision-makers.<br>For leaders who want to stay relevant — without drowning in complexity.</p>
+                        <div style="padding-top: 32px; margin-top: 32px; border-top: 1px solid rgba(0,0,0,0.05);">
+                            <p style="font-family: 'Sora'; font-size: 20px; color: var(--text-muted);">This isn't about chasing trends.</p>
+                            <p style="font-family: 'Sora'; font-size: 24px; font-weight: 600; color: var(--accent); margin-top: 8px;">It's about building leverage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Final CTA -->
+        <section class="section cta-section">
+            <div style="max-width: 700px; margin: 0 auto;">
+                <h2 class="section-title" style="margin-bottom: 32px; font-size: clamp(32px, 5vw, 48px);">Stop Guessing.<br><span class="hero-accent">Start Implementing.</span></h2>
+                <div style="display: flex; flex-direction: column; gap: 16px; justify-content: center; margin-top: 48px;">
+                    <a href="#playbooks" class="btn-primary">
+                        Explore the AI Playbooks
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 8px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <button class="btn-secondary">Find the Right Guide for Your Business</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-tagline">
+            AI won't replace your business.<br>
+            <strong>But a business using AI might.</strong>
+        </div>
+        <p>© 2026 No Code Lab. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        
+        let particles = [];
+        let width, height;
+        let scrollProgress = 0;
+        let mouse = { x: -1000, y: -1000 };
+        
+        function init() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            
+            const isMobile = width < 768;
+            const particleCount = isMobile ? 150 : 500;
+            const spacing = isMobile ? 40 : 50;
+            
+            particles = [];
+            const availableSpots = [];
+            const cols = Math.floor(width / spacing) + 1;
+            const rows = Math.floor(height / spacing) + 1;
+            
+            for(let i = 0; i < cols; i++) {
+                for(let j = 0; j < rows; j++) {
+                    availableSpots.push({ x: i * spacing, y: j * spacing });
+                }
+            }
+            
+            availableSpots.sort(() => Math.random() - 0.5);
+            
+            for(let i = 0; i < particleCount; i++) {
+                const spot = availableSpots[i % availableSpots.length];
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 1.2,
+                    vy: (Math.random() - 0.5) * 1.2,
+                    baseOpacity: Math.random() * 0.15 + 0.05,
+                    gridX: spot.x,
+                    gridY: spot.y,
+                    currentStructure: 0
+                });
+            }
+        }
+        
+        function handleScroll() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            scrollProgress = Math.min(Math.max(scrollTop / docHeight, 0), 1);
+        }
+        
+        function handleMouseMove(e) {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        }
+        
+        window.addEventListener('resize', init);
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('mousemove', handleMouseMove);
+        
+        init();
+        
+        function render() {
+            ctx.clearRect(0, 0, width, height);
+            
+            if (scrollProgress > 0.3) {
+                const lightOpacity = Math.min((scrollProgress - 0.3) * 2, 0.4);
+                const gradient = ctx.createLinearGradient(width / 2, 0, width / 2, height);
+                gradient.addColorStop(0, `rgba(194, 109, 83, 0)`);
+                gradient.addColorStop(0.5, `rgba(194, 109, 83, ${lightOpacity * 0.15})`);
+                gradient.addColorStop(1, `rgba(194, 109, 83, 0)`);
+                ctx.fillStyle = gradient;
+                ctx.fillRect(width / 2 - 2, 0, 4, height);
+            }
+            
+            if (scrollProgress > 0.1) {
+                ctx.strokeStyle = `rgba(194, 109, 83, ${scrollProgress * 0.02})`;
+                ctx.lineWidth = 1;
+                const spacing = 80;
+                ctx.beginPath();
+                for(let x = 0; x <= width; x += spacing) {
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, height);
+                }
+                for(let y = 0; y <= height; y += spacing) {
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(width, y);
+                }
+                ctx.stroke();
+            }
+            
+            const mouseRadius = width < 768 ? 200 : 350;
+            
+            for(let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                const dx = mouse.x - p.x;
+                const dy = mouse.y - p.y;
+                const distToMouse = Math.sqrt(dx * dx + dy * dy);
+                
+                const targetStructure = distToMouse < mouseRadius ? Math.pow(1 - distToMouse / mouseRadius, 1.2) : 0;
+                p.currentStructure += (targetStructure - p.currentStructure) * 0.08;
+                
+                if(p.currentStructure > 0.01) {
+                    const tx = p.gridX - p.x;
+                    const ty = p.gridY - p.y;
+                    p.x += tx * (p.currentStructure * 0.1);
+                    p.y += ty * (p.currentStructure * 0.1);
+                } else {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if(p.x < 0 || p.x > width) p.vx *= -1;
+                    if(p.y < 0 || p.y > height) p.vy *= -1;
+                }
+                
+                const baseSize = 1.5;
+                const size = baseSize + (p.currentStructure * 1.5);
+                let opacity = p.baseOpacity + (p.currentStructure * 0.4);
+                opacity = Math.min(opacity, 1);
+                
+                const r = 140 + (194 - 140) * p.currentStructure;
+                const g = 135 + (109 - 135) * p.currentStructure;
+                const b = 130 + (83 - 130) * p.currentStructure;
+                ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            requestAnimationFrame(render);
+        }
+        
+        render();
+    </script>
+</body>
+</html>
+<!-- redeploy trigger -->
