@@ -126,3 +126,15 @@ https://github.com/Milo-2026/Milo-Workspace
 ### Files
 - CONTROL_LOG.md (local markdown version)
 - notion_create_page.json (Notion API payload)
+
+---
+
+## [1.0.6] - 2026-03-14
+
+### Fixed
+- Morning report generated and sent (was stale)
+
+### Issue
+- X Orchestrator stopped posting after March 13th (API blocked)
+- Orchestrator process running but stuck
+- Needs restart or X API tier upgrade
