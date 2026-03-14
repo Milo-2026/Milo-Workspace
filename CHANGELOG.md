@@ -138,3 +138,22 @@ https://github.com/Milo-2026/Milo-Workspace
 - X Orchestrator stopped posting after March 13th (API blocked)
 - Orchestrator process running but stuck
 - Needs restart or X API tier upgrade
+
+---
+
+## [1.0.7] - 2026-03-14
+
+### Fixed
+- X Orchestrator OAuth issue (was using Bearer token, now uses OAuth 1.0a)
+- Added `-u` flag for unbuffered output
+- Orchestrator restarted and posting successfully
+
+### Status
+- AddOnQuote: 17 posts, 81 remaining
+- SideQuest: 19 posts, 81 remaining
+- SheetItNow: 9 posts, 91 remaining
+- NoCode Lab: 7 posts, 253 remaining
+
+### Technical Details
+- Fix: post_to_x() function rewritten to use OAuth 1.0a signature
+- Start command: `python3 -u orchestrator.py`
