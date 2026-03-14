@@ -157,3 +157,35 @@ https://github.com/Milo-2026/Milo-Workspace
 ### Technical Details
 - Fix: post_to_x() function rewritten to use OAuth 1.0a signature
 - Start command: `python3 -u orchestrator.py`
+
+---
+
+## [1.0.8] - 2026-03-14
+
+### Changed
+- **New Unified Orchestrator**: Single script handles 4 Notion databases → 4 X accounts
+- Fetches content from Notion instead of local JSON files
+- Updates Notion with timestamp after posting
+
+### Databases Integrated
+| Brand | Database | Content Field | Status Done |
+|-------|----------|---------------|-------------|
+| Sheet It Now | 3211686e... | Name | Posted |
+| AddOnQuote | e9f40d00... | Copy | 🚀 Published |
+| NoCode Lab | 59aff258... | Copy | 🚀 Published |
+| Side Quest | 3cc15a2c... | Copy | 🚀 Published |
+
+### Workflow
+1. Query Notion (Status ≠ Posted/Published)
+2. Extract content from appropriate field
+3. Post to X via OAuth 1.0a
+4. Update Notion: Status → Posted/Published, add timestamp
+
+### File
+- `/Users/alfredoalvarez/.openclaw/social-automation/unified_notion_orchestrator.py`
+
+### Start Command
+```bash
+cd /Users/alfredoalvarez/.openclaw/social-automation
+python3 -u unified_notion_orchestrator.py
+```
